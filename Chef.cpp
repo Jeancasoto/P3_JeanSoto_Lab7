@@ -20,6 +20,7 @@ Chef::Chef(string pNickname, string pPassword, string pNombre, int pEdad, string
     sueldo=pSueldo;
     gritar=50;
     adular=50;
+    type="CH";
 
 }
 
@@ -33,4 +34,8 @@ int Chef::getGritar(){
 
 int Chef::getAdular(){
     return adular;
+}
+
+string Chef::getType(){
+    return type;
 }

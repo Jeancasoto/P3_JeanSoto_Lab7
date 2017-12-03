@@ -39,3 +39,18 @@ string Usuario::getId(){
 string Usuario::getTelefono(){
     return telefono;
 }
+
+string Usuario::getType(){
+    return "UNDEFINED";
+}
+
+string Usuario::escritura(){
+    string retVal="";
+    // retVal+=type+";"+nickname+";"+password+";"+nombre+";";
+    // retVal+=edad;
+    // retVal+=";"+id+";"+telefono+";"+direccion+";";
+    // retVal+=feedback;
+    // retVal+="\n";
+    
+    return retVal;
+}

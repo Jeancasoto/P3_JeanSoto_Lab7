@@ -12,12 +12,14 @@ class Chef : public Personal {
     string platilloFav;
     int gritar;
     int adular;
+    string type;
     public:
     Chef();
     Chef(string,string,string,int,string,string,string,double,string);
     string getPlatilloFav();
     int getGritar();
     int getAdular();
+    virtual string getType();
 
     
 };

@@ -17,6 +17,7 @@ Cliente::Cliente(string pNickname, string pPassword, string pNombre, int pEdad, 
     telefono=pTelefono;
     direccion=pDireccion;
     feedback=pFeedback;
+    type="C";
 }
 
 string Cliente::getDireccion(){
@@ -26,3 +27,19 @@ string Cliente::getDireccion(){
 int Cliente::getFeedback(){
     return feedback;
 }
+
+string Cliente::getType(){
+    return type;
+}
+
+string Cliente::escritura(){
+    string retVal="";
+    retVal+=type+";"+nickname+";"+password+";"+nombre+";";
+    retVal+=edad;
+    retVal+=";"+id+";"+telefono+";"+direccion+";";
+    retVal+=feedback;
+    retVal+="\n";
+    
+    return retVal;
+}
+

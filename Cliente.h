@@ -10,10 +10,14 @@ class Cliente : public Usuario{
     protected:
     string direccion;
     int feedback;
+    string type;
     public:
     Cliente();
     Cliente(string,string,string,int,string,string,string,int);
     string getDireccion();
     int getFeedback();
+    virtual string getType();
+    virtual string escritura();
+
 
 };

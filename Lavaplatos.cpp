@@ -19,9 +19,13 @@ Lavaplatos::Lavaplatos(string pNickname, string pPassword, string pNombre, int p
     fecha=pFecha;
     sueldo=pSueldo;
     motivacion=50;
+    type="L";
 
 }
 
 int Lavaplatos::getMotivacion(){
     return motivacion;
+}
+string Lavaplatos::getType(){
+    return type;
 }

@@ -24,5 +24,8 @@ string getNombre();
 int getEdad();
 string getId();
 string getTelefono();
+virtual string getType();
+virtual string escritura();
+
 
 };

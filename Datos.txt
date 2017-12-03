@@ -1,0 +1,25 @@
+C;jean;34;23;;23;23;23;
+C;ana;67;76;C;67;67;67;C
+C;23;23;23;;23;23;23;
+C;jean;45;45;-;45;45;45;-
+C;hola;1234;123;{;234;234;234;ê
+C;JUAN;34;34;";34;34;34;
+C;jean;1234;jeanca;;234;234;234;
+C;Jean;1234;jean carlo;;3434;234234;23423;"
+C;kike;kkkk;enrique;";434;455;345;
+C;Jean;1234;jeanca;;234324;234234;23423;
+C;kike;kike;enrique;;56546;467467;gfdgdfgd;
+C;david;iliana;David L.;;456456;456456;dgdfghgfh;
+C;jeanca;1234;Jean;;2343453;534535;las hadas;
+C;kike;kike;enrique;;45534;3656;asaber;
+C;jodi;jota;jordi ;;32445;3467567;fdgdgfhfhj;
+C;jean;1234;234;";34;34;34;
+C;kike;kike;45;,;56;56;56;
+C;jean;1234;jeancarlo;;324324;234234;234234;
+C;jean;1234;jeanca;;234;2;2234;
+C;jean;1234;jeanca;;213234;234245;sdfsdf;
+C;kike;kike;enrique;;34234;23423423;rgsgsdg;
+C;david;dddd;David M.;;q3545;345345;4sfss;
+C;jean;1234;jeanca;;3245;435456;dfgdfg;
+C;kike;kike;enrique;;356;657567;fgdhgf;
+C;davi;d;david;;34234;45546;dfgg;
