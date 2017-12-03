@@ -12,12 +12,14 @@ class Cliente : public Usuario{
     int feedback;
     string type;
     public:
+    virtual~Cliente();
     Cliente();
     Cliente(string,string,string,int,string,string,string,int);
     string getDireccion();
     int getFeedback();
     virtual string getType();
-    virtual string escritura();
-
+    virtual string escritura(); 
+    friend class Usuario;
+    
 
 };

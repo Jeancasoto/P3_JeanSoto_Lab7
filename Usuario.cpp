@@ -7,6 +7,8 @@ using namespace std;
 
 Usuario::Usuario(){}
 
+Usuario::~Usuario(){}
+
 Usuario::Usuario(string pNickname, string pPassword, string pNombre, int pEdad, string pId, string pTelefono){
     nickname=pNickname;
     password=pPassword;

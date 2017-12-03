@@ -12,8 +12,10 @@ class Lavaplatos : public Personal{
     int motivacion;
     string type;
     public:
+    virtual~Lavaplatos();
     Lavaplatos();
     Lavaplatos(string,string,string,int,string,string,string,double,int);
     int getMotivacion();
-    string getType();
+    virtual string getType();
+    virtual string escritura();
 };

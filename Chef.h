@@ -14,12 +14,14 @@ class Chef : public Personal {
     int adular;
     string type;
     public:
+    virtual~Chef();
     Chef();
     Chef(string,string,string,int,string,string,string,double,string);
     string getPlatilloFav();
     int getGritar();
     int getAdular();
     virtual string getType();
+    virtual string escritura();
 
     
 };

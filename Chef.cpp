@@ -9,6 +9,8 @@ using namespace std;
 
 Chef::Chef(){}
 
+Chef::~Chef(){}
+
 Chef::Chef(string pNickname, string pPassword, string pNombre, int pEdad, string pId, string pTelefono, string pFecha, double pSueldo, string pPlatilloFav) : Personal(pNickname, pPassword, pNombre, pEdad, pId, pTelefono, pFecha, pSueldo){
     nickname=pNickname;
     password=pPassword;
@@ -38,4 +40,13 @@ int Chef::getAdular(){
 
 string Chef::getType(){
     return type;
+}
+
+string Chef::escritura(){
+    string retVal="";
+    retVal+=type+";"+nickname+";"+password+";"+nombre+";";
+    retVal+=";"+id+";"+telefono+";";
+    retVal+="\n";
+    
+    return retVal;
 }
