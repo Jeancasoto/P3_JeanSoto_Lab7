@@ -22,6 +22,7 @@ Chef::Chef(string pNickname, string pPassword, string pNombre, int pEdad, string
     sueldo=pSueldo;
     gritar=50;
     adular=50;
+    platilloFav=pPlatilloFav;
     type="CH";
 
 }

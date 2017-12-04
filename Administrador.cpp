@@ -67,9 +67,9 @@ int Administrador::getDesempleados(){
 }
 
 void Administrador::setEmpleados(int x){
-        empleados+=x;
+        empleados=empleados+x;
 }
 
 void Administrador::setDesempleados(int y){
-        empleados+=y;
+        desempleados=desempleados+y;
 }

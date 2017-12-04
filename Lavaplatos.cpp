@@ -31,11 +31,26 @@ int Lavaplatos::getMotivacion(){
 string Lavaplatos::getType(){
     return type;
 }
+void Lavaplatos::setMotivacionN(int x){
+    motivacion= motivacion-x;
+}
+
+void Lavaplatos::setMotivacionP(int x){
+    motivacion= motivacion+x;
+}
+
+void Lavaplatos::setSueldo(double d){
+    sueldo= sueldo+d;
+}
 
 string Lavaplatos::escritura(){
+    string edadS= to_string(edad);
+    string sueldoS =to_string(sueldo);
+    string motivacionS =to_string(motivacion);
     string retVal="";
     retVal+=type+";"+nickname+";"+password+";"+nombre+";";
-    retVal+=";"+id+";"+telefono+";";
+    retVal+=edadS;
+    retVal+=";"+id+";"+telefono+";"+fecha+";"+sueldoS+";"+motivacionS;
     retVal+="\n";
     
     return retVal;

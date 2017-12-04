@@ -16,6 +16,9 @@ class Lavaplatos : public Personal{
     Lavaplatos();
     Lavaplatos(string,string,string,int,string,string,string,double,int);
     int getMotivacion();
+    void setMotivacionP(int);
+    void setSueldo(double);
+    void setMotivacionN(int);
     virtual string getType();
     virtual string escritura();
 };

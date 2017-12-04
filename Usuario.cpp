@@ -56,3 +56,4 @@ string Usuario::escritura(){
     
     return retVal;
 }
+

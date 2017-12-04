@@ -36,4 +36,5 @@ friend class Personal;
 friend class Cliente;
 
 
+
 };
