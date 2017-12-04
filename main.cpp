@@ -1097,7 +1097,8 @@ vector<Usuario*> cargar(){
     //file.trunc();
     //file.open ("Datos.txt", std::fstream::trunc | std::fstream::in | std::fstream::out | std::fstream::app);
     if(file.is_open()){
-        string TYPE;
+        while(!file.eof()){
+            string TYPE;
         getline(file,TYPE,';');
         if(TYPE=="C"){
             string edadS;
@@ -1125,6 +1126,7 @@ vector<Usuario*> cargar(){
             tempo.push_back(new Cliente(nickname,password,nombre,edad,id,telefono,direccion,feedback));
            
         }
+        cout<<TYPE<<endl;
         if(TYPE=="A"){
             string edadS;
             string sueldoS;
@@ -1134,6 +1136,7 @@ vector<Usuario*> cargar(){
 
             string nickname;
             getline(file,nickname,';');
+            cout<<nickname<<endl;
             string password;
             getline(file,password,';');
             string nombre;
@@ -1253,6 +1256,7 @@ vector<Usuario*> cargar(){
     
     
     file.close();
+        }
     }
  //file.close();
  cout << "Carga de archivo exitosa"<<endl;
