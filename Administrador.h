@@ -10,15 +10,19 @@ using namespace std;
 
 class Administrador : public Personal{
     protected:
-    vector <Personal*> empleados;
-    vector <Personal*> desempleados;
+    int empleados;
+    int desempleados;
     string type;
     public:
     virtual~Administrador();
     Administrador();
     Administrador(string,string,string,int,string,string,string,double);
-    Administrador(string,string,string,int,string,string,string,double,vector<Personal*>,vector<Personal*>);
+    Administrador(string,string,string,int,string,string,string,double,int,int);
     virtual string getType();
     virtual string escritura();
+    int getEmpleados();
+    int getDesempleados();
+    void setEmpleados(int);
+    void setDesempleados(int);
     
 };

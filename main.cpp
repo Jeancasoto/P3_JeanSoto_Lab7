@@ -15,6 +15,10 @@
 //vector<Usuario*> cargarVector();
 void imprimirVector(vector<Usuario*>);
 int calificacion(vector<Usuario*>);
+void imprimirPosibles_empleados(vector<Usuario*>);
+double promedioSueldo(vector<Usuario*>);
+void sueldo_Alto(vector<Usuario*>);
+void sueldo_Bajo(vector<Usuario*>);
 
 using namespace std;
 
@@ -84,7 +88,7 @@ int main(int argc, char const *argv[]){
             case  'b':{
                 Agregar:
                 char ag;
-                cout << "a)Agregar Cliente\nb)Agregar Personal\n"<<endl;
+                cout << "a)Agregar Cliente\nb)Agregar Personal administrativo\n"<<endl;
                 cin >>ag;
                 switch (ag){
                 case 'a':{
@@ -152,8 +156,13 @@ int main(int argc, char const *argv[]){
                 case 'b':{
                     Personal:
                     char personal;
-                    cout << "a)Agregar Administrador\nb)Agregar Chef\nc)Agregar Lavaplatos\nd)Agregar Mesero\n"<<endl;
+                    //cout << "a)Agregar Administrador\nb)Agregar Chef\nc)Agregar Lavaplatos\nd)Agregar Mesero\n"<<endl;
+                    cout << "a)Agregar Administrador"<<endl;
+
                     cin>>personal;
+                    if(personal=='b' || personal=='c' || personal=='d'){
+                        goto NOENCONTRO;
+                    }
                     switch (personal){
                     case 'a':{
                         string nickname;
@@ -196,21 +205,23 @@ int main(int argc, char const *argv[]){
                         sueldo=stod(sueldoS);
 
 
-                        //Usuario* cliente =new Cliente(nickname,password,nombre,edad,id,telefono,direccion,feedback); 
+                        Usuario* admin =new Administrador(nickname,password,nombre,edad,id,telefono,fecha,sueldo); 
                         fstream file;
                         //clientes.push_back(new Cliente(nickname,password,nombre,edad,id,telefono,direccion,feedback));
-                        usuarios.push_back(new Administrador(nickname,password,nombre,edad,id,telefono,fecha,sueldo));
+                        usuarios.push_back(new Administrador(nickname,password,nombre,edad,id,telefono,fecha,sueldo,0,0));
                         file.open ("Datos.txt", std::fstream::in | std::fstream::out | std::fstream::app);
-                        //file << cliente->escritura();
+                        file << admin->escritura();
                         cout << "Agrego Administrador exitosamente"<<endl;
                         file.close();
-                        cout << "Le recordamos que como cliente puede inciar sesion\ny ver la cantidad de estrellas de nuestro \nrestaurante segun la valoracion que han dado nuestros clientes"<<endl;
+                        cout << "Le hacemos saber que como administrador , usted puede realizar varias tareas\n como agregar personal o despedir el mismo, ver los salarios de los empleados\nentre otras diversas funciones como administrador, cuando haga login\npodra ver mas a detalle lo que aqui le notificamos"<<endl;
 
 
                     }
                     break;
                     //fin case 'a' de agregar personal
                     case 'b':{
+                        CHEF:
+                        cout << "┼┼┼┼┼AGREGANDO CHEF┼┼┼┼┼"<<endl;
                         string nickname;
                         string password;
                         string nombre;
@@ -255,20 +266,23 @@ int main(int argc, char const *argv[]){
                         
 
 
-                        //Usuario* cliente =new Cliente(nickname,password,nombre,edad,id,telefono,direccion,feedback); 
+                        Usuario* chef =new Chef(nickname,password,nombre,edad,id,telefono,fecha,sueldo,platillo); 
                         fstream file;
                         //clientes.push_back(new Cliente(nickname,password,nombre,edad,id,telefono,direccion,feedback));
                         usuarios.push_back(new Chef(nickname,password,nombre,edad,id,telefono,fecha,sueldo,platillo));
                         file.open ("Datos.txt", std::fstream::in | std::fstream::out | std::fstream::app);
-                        //file << cliente->escritura();
+                        file << chef->escritura();
                         cout << "Agrego Chef exitosamente"<<endl;
                         cout<<"Le hacemos saber que como chef del restaurante queda bajo su servicio\nlos lavaplatos a los cuales puede adularles por un buen\ntrabajo, o bien reganarlos si no se desenpenan de la forma correcta "<<endl;
                         file.close();
+                        //goto ADMINISTRADOR;
 
                     }
                     break;
                     //fin case 'b' de agregar personal
                     case 'c':{
+                        LAVAPLATOS:
+                        cout << "┼┼┼┼┼AGREGANDO LAVAPLATOS┼┼┼┼┼"<<endl;
                         string nickname;
                         string password;
                         string nombre;
@@ -320,11 +334,13 @@ int main(int argc, char const *argv[]){
                         cout << "Agrego Lavaplatos exitosamente"<<endl;
                         cout << "Le hacemos saber que como lavaplatos del restaurante usted tiene un nivel\nde motivacion dependiendo en que nivel esta, puede \npedir un aumento o renunciar a su trabajo, su motivacion depende\n de las adulaciones o reganos del chef segun la forma e\n la que se desempena en el trabajo"<<endl;
                         file.close();
-
+                        //goto ADMINISTRADOR;
                     }
                     break;
                     //fin case 'c' de agregar personal
                     case 'd':{
+                        MESERO:
+                        cout << "┼┼┼┼┼AGREGANDO MESERO┼┼┼┼┼"<<endl;
                         string nickname;
                         string password;
                         string nombre;
@@ -376,11 +392,13 @@ int main(int argc, char const *argv[]){
                         cout << "Agrego Mesero exitosamente"<<endl;
                         cout << "Le hacemos saber que como mesero de nuestro restaurante , usted tendra una lista\nde platillos por entregar, usted puede decidir\nsi entregarlos todos o uno por uno"<<endl;
                         file.close();
+                        //goto ADMINISTRADOR;
 
                     }
                     break;
                     //fin case 'd' de agregar personal
                     default:
+                    NOENCONTRO:
                     cout << "La accion que intento no esta contemplada dentro del menu "<<endl;
                     goto Personal;
                         break;
@@ -399,34 +417,111 @@ int main(int argc, char const *argv[]){
             break;
             //fin case 'b' de menu principal
             case  'c':{
-                imprimirVector(usuarios);
-
-                // ifstream reader("Datos.txt");
-                // string antes;
-                // reader>>antes;
-                // cout<<antes<<endl;
-                // string despues="----- ";
-                // ofstream writer("Datos.txt");
+                string nickname="";
+                string password="";
+                cout << "Ingrese nickname de usuario"<<endl;
+                cin>>nickname;
+                cout << "Ingrese password de usuario"<<endl;
+                cin>>password;
                 
-                // writer<<antes+despues<<endl;
-                // writer<<"\n";
+                for(int i = 0; i < usuarios.size(); i++){
+                  if(usuarios[i]->getNickname()==nickname){
+                      if(usuarios[i]->getPassword()==password){
+                          if(usuarios[i]->getType()=="A"){
+                            MenuAdmin:
+                            cout << "➤➤➤➤➤INICIO DE ADMIN SESION EXITOSO ✔ "<<endl;
+                            char accion;
+                            cout<< "a)Agregar empleado\nb)Despedir empleado\nc)Listar empleado o empleados con menor sueldo\nd)Listar empleado o empleados con mayor sueldo\ne)Ver promedio sueldo entre los empleados"<<endl;
+                            cin >>accion;
+                            switch (accion){
+                            case  'a':{
+                                EMPLEANDO:
+                                ADMINISTRADOR:
+                                char agregando;
+                                cout << "a)Agregar Chef\nb)Agregar Lavaplatos\nc)Agregar Mesero\n"<<endl;
+                                cin>>agregando;
+                                switch (agregando){
+                                case  'a':{
+                                    if(dynamic_cast<Administrador*>(usuarios[i])){
+                                        dynamic_cast<Administrador*>(usuarios[i])->setEmpleados(1);
+                                    }
+                                    string admin=dynamic_cast<Administrador*>(usuarios[i])->getNickname();
+                                    cout<< admin << " Esta contratando un CHEF , sumaremos 1 a su lista de empleados"<<endl;
+                                    goto CHEF;
+                                }
+                                    break;
+                                    //fin case 'a'
+                                case  'b':{
+                                    if(dynamic_cast<Administrador*>(usuarios[i])){
+                                        dynamic_cast<Administrador*>(usuarios[i])->setEmpleados(1);
+                                    }
+                                    string admin=dynamic_cast<Administrador*>(usuarios[i])->getNickname();
+                                    cout<< admin << " Esta contratando un LAVAPLATOS , sumaremos 1 a su lista de empleados"<<endl;
+                                    goto LAVAPLATOS;
+                                }
+                                    break;
+                                    //fin case 'b'
+                                case  'c':{
+                                    if(dynamic_cast<Administrador*>(usuarios[i])){
+                                        dynamic_cast<Administrador*>(usuarios[i])->setEmpleados(1);
+                                    }
+                                    string admin=dynamic_cast<Administrador*>(usuarios[i])->getNickname();
+                                    cout<< admin << " Esta contratando un MESERO , sumaremos 1 a su lista de empleados"<<endl;
+                                    goto MESERO;
+                                }
+                                    break;
+                                    //fin case 'c'
+                                default:
+                                    cout << "La accion que intento no esta contemplada dentro del menu "<<endl;
+                                    goto EMPLEANDO;
+                                    break;
+                                }
+                               
 
-                // reader.close();
+                            }
+                                break;
+                                //fin case 'a'
+                            case  'b':{//DESPEDIR EMPLEADO
+                                
+                                
+                                
+                            }
+                                break;
+                                //fin case 'b'
+                            case  'c':{//MENOR SUELDO
+                                 sueldo_Bajo(usuarios);
+                                
+                            }
+                                break;
+                                //fin case 'c'
+                            case  'd':{//MAYOR SUELDO
+                                sueldo_Alto(usuarios);
+                                
+                            }
+                                break;
+                                //fin case 'd'
+                            case  'e':{//PROMEDIO 
+                                double promedio=promedioSueldo(usuarios); 
+                                cout << "El salario promedio entre los empleados es de:  "<<promedio<<endl;
 
-                // ifstream reader ("Datos.txt");
-                // if(reader.is_open()){
-                //     string nombre;
-                //     getline(reader,nombre,',');
-                //     string password;
-                //     string apellido;
-                //     getline(reader,apellido,',');
-                //     string edad;
-                //     cout << "nombre "<<nombre <<endl;
-                //     cout << "password "<<password <<endl;
-                //     cout << "apellido "<<apellido <<endl;
-                //     cout << "edad "<<edad <<endl;
+                            }
+                                break;
+                                //fin case 'e'
+                            default:
+                                cout << " ✖︎ La accion que intento no esta contemplada dentro del menu "<<endl;
+                                goto MenuAdmin;
+                                break;
+                            }
 
-                // }
+                          }else{
+                              cout << " ✖︎ Algo ocurrio y no se pudo inciar sesion\nAsegurese de iniciar sesion donde corresponde\nasegurese de introducir los datos correctamente"<<endl;
+                          }
+                      }else{
+                              cout << " ✖︎ Algo ocurrio y no se pudo inciar sesion\nAsegurese de iniciar sesion donde corresponde\nasegurese de introducir los datos correctamente"<<endl;
+                    }
+                  }
+
+                }
                 
                 
             }
@@ -444,8 +539,13 @@ int main(int argc, char const *argv[]){
             break;
         }//fin switch del menu principal
         
-
+        
     }//fin while con respuesta de usuario
+    for(int i = 0; i < usuarios.size(); i++){
+        delete usuarios[i];
+    }
+    cout<< "Se limpio exitosamente la memoria"<<endl;
+    
     return 0;
 }//fin main;
 
@@ -457,8 +557,8 @@ int main(int argc, char const *argv[]){
 
 void imprimirVector(vector<Usuario*> usuarios){
     for(int i = 0; i < usuarios.size(); i++){
-        if(dynamic_cast<Cliente*>(usuarios[i])){
-            int x =dynamic_cast<Cliente*>(usuarios[i])->getFeedback();
+        if(dynamic_cast<Chef*>(usuarios[i])){
+            string x =dynamic_cast<Cliente*>(usuarios[i])->getNickname();
             cout << x;
         }
     }
@@ -482,4 +582,107 @@ int calificacion(vector<Usuario*> users){
     }
     
     return res;
+}
+
+void imprimirPosibles_empleados(vector<Usuario*> gente){
+    for(int i = 0; i < gente.size(); i++){
+        cout<<"PENE"<<endl;
+        if(dynamic_cast<Chef*>(gente[i])->getType()=="CH"){
+           cout<<"TRUE"<<endl;
+            string x= dynamic_cast<Chef*>(gente[i])->getNickname();
+            cout << x;
+        }else{
+            cout<<"AJABER"<<endl;
+        }
+        
+        
+    }
+    
+
+}
+
+double promedioSueldo(vector<Usuario*> users){
+    int cont=0;
+    double acum=0;
+    double res=0;
+    for(int i = 0; i < users.size(); i++){
+        if(dynamic_cast<Mesero*>(users[i])){
+            acum+= dynamic_cast<Mesero*>(users[i])->getSueldo();
+            cont++;
+        }
+        if(dynamic_cast<Lavaplatos*>(users[i])){
+            acum+= dynamic_cast<Lavaplatos*>(users[i])->getSueldo();
+            cont++;
+        }
+        if(dynamic_cast<Chef*>(users[i])){
+            acum+= dynamic_cast<Chef*>(users[i])->getSueldo();
+            cont++;
+        }
+    }
+    
+    if(acum>0){
+        res=acum/cont;
+    }
+    
+    return res;
+}
+
+void sueldo_Alto(vector<Usuario*> users){
+    double mayor=0;
+    double tempo=0;
+    double res=0;
+    for(int i = 0; i < users.size(); i++){
+         if(dynamic_cast<Personal*>(users[i])->getType()!="A"){
+            mayor= dynamic_cast<Personal*>(users[i])->getSueldo();
+        }
+    }
+    
+    for(int i = 0; i < users.size(); i++){
+        if(dynamic_cast<Personal*>(users[i])->getType()!="A"){
+               tempo= dynamic_cast<Personal*>(users[i])->getSueldo();
+                if(tempo>mayor){
+                    mayor=tempo;
+                }
+            } 
+    }
+    for(int i = 0; i < users.size(); i++){ 
+        if(dynamic_cast<Personal*>(users[i])->getSueldo()==mayor){
+            //if(dynamic_cast<Personal*>(users[i])->getType()!="A"){
+                cout << "Empleado(s) con el sueldo mas alto"<<endl;
+                cout << "El empleado: "<<dynamic_cast<Personal*>(users[i])->getNombre()<<endl;;
+                cout << "Con un sueldo de: "<<dynamic_cast<Personal*>(users[i])->getSueldo()<<endl;
+
+            //}
+        }
+    }
+}
+
+void sueldo_Bajo(vector<Usuario*> users){
+    double menor=0;
+    double tempo=0;
+    double res=0;
+    for(int i = 0; i < users.size(); i++){
+         if(dynamic_cast<Personal*>(users[i])->getType()!="A"){
+            menor= dynamic_cast<Personal*>(users[i])->getSueldo();
+        }
+    }
+    
+    for(int i = 0; i < users.size(); i++){
+        if(dynamic_cast<Personal*>(users[i])->getType()!="A"){
+               tempo= dynamic_cast<Personal*>(users[i])->getSueldo();
+                if(tempo<menor){
+                    menor=tempo;
+                }
+            } 
+    }
+    for(int i = 0; i < users.size(); i++){ 
+        if(dynamic_cast<Personal*>(users[i])->getSueldo()==menor){
+            //if(dynamic_cast<Personal*>(users[i])->getType()!="A"){
+                cout << "Empleado(s) con el sueldo mas alto"<<endl;
+                cout << "El empleado: "<<dynamic_cast<Personal*>(users[i])->getNombre()<<endl;;
+                cout << "Con un sueldo de: "<<dynamic_cast<Personal*>(users[i])->getSueldo()<<endl;
+
+            //}
+        }
+    }
 }

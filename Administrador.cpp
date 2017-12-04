@@ -12,7 +12,7 @@ Administrador::Administrador(){}
 
 Administrador::~Administrador(){}
 
-Administrador::Administrador(string pNickname, string pPassword, string pNombre, int pEdad, string pId, string pTelefono, string pFecha, double pSueldo, vector <Personal*> pEmpleados, vector <Personal*> pDesempleados) : Personal(pNickname, pPassword, pNombre, pEdad, pId, pTelefono, pFecha, pSueldo){
+Administrador::Administrador(string pNickname, string pPassword, string pNombre, int pEdad, string pId, string pTelefono, string pFecha, double pSueldo, int pEmpleados, int pDesempleados) : Personal(pNickname, pPassword, pNombre, pEdad, pId, pTelefono, pFecha, pSueldo){
     nickname=pNickname;
     password=pPassword;
     nombre=pNombre;
@@ -23,6 +23,7 @@ Administrador::Administrador(string pNickname, string pPassword, string pNombre,
     sueldo=pSueldo;
     empleados=pEmpleados;
     desempleados=pDesempleados;
+    type="A";
 
 }
 
@@ -44,10 +45,31 @@ string Administrador::getType(){
 }
 
 string Administrador::escritura(){
+    string edadS= to_string(edad);
+    string sueldoS =to_string(sueldo);
+    string empleadosS=to_string(empleados);
+    string desempleadosS=to_string(desempleados);
     string retVal="";
     retVal+=type+";"+nickname+";"+password+";"+nombre+";";
-    retVal+=";"+id+";"+telefono+";";
+    retVal+=edadS;
+    retVal+=";"+id+";"+telefono+";"+fecha+";"+sueldoS+";"+empleadosS+";"+desempleadosS;
     retVal+="\n";
     
     return retVal;
+}
+
+int Administrador::getEmpleados(){
+    return empleados;
+}
+
+int Administrador::getDesempleados(){
+    return desempleados;
+}
+
+void Administrador::setEmpleados(int x){
+        empleados+=x;
+}
+
+void Administrador::setDesempleados(int y){
+        empleados+=y;
 }

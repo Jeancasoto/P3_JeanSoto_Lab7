@@ -43,9 +43,12 @@ string Chef::getType(){
 }
 
 string Chef::escritura(){
+    string edadS= to_string(edad);
+    string sueldoS =to_string(sueldo);
     string retVal="";
     retVal+=type+";"+nickname+";"+password+";"+nombre+";";
-    retVal+=";"+id+";"+telefono+";";
+    retVal+=edadS;
+    retVal+=";"+id+";"+telefono+";"+fecha+";"+sueldoS+";"+platilloFav;
     retVal+="\n";
     
     return retVal;
